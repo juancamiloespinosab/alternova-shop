@@ -1,1 +1,9 @@
-<p>cart works!</p>
+<div *ngIf="cartStateService.getCart$() | async as cart">
+  <span *ngFor="let cartProduct of cart.products">
+    {{ cartProduct | json }}
+    <hr />
+  </span>
+  <p>
+    {{ cart.totalOrderPrice }}
+  </p>
+</div>

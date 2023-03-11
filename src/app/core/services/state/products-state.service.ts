@@ -14,7 +14,7 @@ export class ProductsStateService extends State<Product[]> {
   }
 
   private async loadProducts() {
-    const { products } = await lastValueFrom(
+    const { products }: { products: Product[] } = await lastValueFrom(
       this.productsDataService.getProducts()
     );
     this.saveState(products);

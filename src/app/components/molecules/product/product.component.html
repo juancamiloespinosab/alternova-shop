@@ -17,13 +17,18 @@
     <mat-form-field class="add-to-cart-wrapper" appearance="fill">
       <div class="add-to-cart-container">
         <input
+          #input
           class="add-to-cart__input"
           matInput
           type="number"
           value="1"
           min="1"
         />
-        <button color="primary" mat-raised-button>
+        <button
+          (click)="addToCart(product, input.value)"
+          color="primary"
+          mat-raised-button
+        >
           <mat-icon> add_shopping_cart </mat-icon>
           Add to cart
         </button>
