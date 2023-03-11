@@ -1,0 +1,35 @@
+@use "src/assets/styles/variables" as vars;
+
+.drawer-container {
+  height: 100vh;
+}
+
+.drawer {
+  width: 40vw;
+  @media (max-width: vars.$layout-breakpoint-small) {
+    width: 80vw;
+  }
+}
+
+.toolbar-wrapper,
+.products-wrapper {
+  display: flex;
+  justify-content: center;
+  .toolbar-container,
+  .products-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+  }
+  .toolbar-container {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .products-container {
+    flex-direction: column;
+  }
+}
+
+.products-wrapper {
+    padding: 0 16px;
+}

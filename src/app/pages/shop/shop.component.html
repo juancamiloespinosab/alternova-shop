@@ -1,1 +1,36 @@
-<p>shop works!</p>
+<mat-drawer-container class="drawer-container" [hasBackdrop]="false">
+  <mat-drawer
+    class="drawer"
+    position="end"
+    #drawer
+    [mode]="responsiveService.isMobile ? 'push' : 'side'"
+  >
+    <app-cart></app-cart>
+  </mat-drawer>
+
+  <main>
+    <header>
+      <mat-toolbar class="toolbar-wrapper" color="primary">
+        <section class="toolbar-container">
+          <h1>Alternova Shop</h1>
+          <button mat-icon-button (click)="drawerToggle(drawer)">
+            <mat-icon>{{
+              drawerState === "open" ? "close" : "shopping_cart"
+            }}</mat-icon>
+          </button>
+        </section>
+      </mat-toolbar>
+    </header>
+    <article>
+      <section class="products-wrapper">
+        <div class="products-container">
+          <p
+            *ngFor="let product of productsStateService.getProducts$() | async"
+          >
+            {{ product.name }}
+          </p>
+        </div>
+      </section>
+    </article>
+  </main>
+</mat-drawer-container>
