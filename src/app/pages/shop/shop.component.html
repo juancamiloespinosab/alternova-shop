@@ -9,11 +9,11 @@
   </mat-drawer>
 
   <main>
-    <header>
+    <header class="navbar">
       <mat-toolbar class="toolbar-wrapper" color="primary">
         <section class="toolbar-container">
           <h1>Alternova Shop</h1>
-          <button mat-icon-button (click)="drawerToggle(drawer)">
+          <button style="z-index: 100;" mat-icon-button (click)="drawerToggle(drawer)">
             <mat-icon>{{
               drawerState === "open" ? "close" : "shopping_cart"
             }}</mat-icon>
@@ -21,14 +21,12 @@
         </section>
       </mat-toolbar>
     </header>
-    <article>
+    <article class="content">
       <section class="products-wrapper">
         <div class="products-container">
-          <p
-            *ngFor="let product of productsStateService.getProducts$() | async"
-          >
-            {{ product.name }}
-          </p>
+          <app-products
+            [products]="(productsStateService.getProducts$() | async) ?? []"
+          ></app-products>
         </div>
       </section>
     </article>

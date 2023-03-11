@@ -11,6 +11,12 @@
   }
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
 .toolbar-wrapper,
 .products-wrapper {
   display: flex;
@@ -30,6 +36,10 @@
   }
 }
 
+.toolbar-wrapper {
+  height: 5vh;
+}
+
 .products-wrapper {
-    padding: 0 16px;
+  padding: 0 16px;
 }

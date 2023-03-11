@@ -4,9 +4,10 @@ import { ProductsStateService } from '@core/services/state/products-state.servic
 import { SharedModule } from '@shared/shared.module';
 import { ResponsiveService } from '@core/services/app/responsive.service';
 import { CartComponent } from '@components/organisms/cart/cart.component';
+import { ProductsComponent } from '@components/organisms/products/products.component';
 
 @Component({
-  imports: [SharedModule, CartComponent],
+  imports: [SharedModule, CartComponent, ProductsComponent],
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],

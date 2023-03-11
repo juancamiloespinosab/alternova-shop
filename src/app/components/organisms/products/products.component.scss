@@ -1,0 +1,17 @@
+@use "src/assets/styles/variables" as vars;
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      (vars.$products-column-min-with - vars.$layout-padding-space),
+      vars.$products-column-max-with
+    )
+  );
+  gap: vars.$layout-padding-space;
+  padding: vars.$layout-padding-space 0;
+  @media (max-width: vars.$layout-breakpoint-small) {
+    grid-template-columns: 1fr;
+  }
+}
