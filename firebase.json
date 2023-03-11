@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "./dist/alternova-shop",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
