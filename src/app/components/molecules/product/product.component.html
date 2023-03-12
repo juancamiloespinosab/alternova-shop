@@ -1,4 +1,4 @@
-<mat-card class="card" shakeError [errorObservable]="showStockError$">
+<mat-card class="card" [animatedFeedback]="animatedFeedbackError$">
   <div
     [ngStyle]="{
       'background-image':
@@ -12,7 +12,9 @@
         {{ product.name }}
       </span>
     </mat-card-title>
-    <mat-card-subtitle>{{ product.unit_price | currency:'USD':'symbol':'1.0' }}</mat-card-subtitle>
+    <mat-card-subtitle>{{
+      product.unit_price | currency : "USD" : "symbol" : "1.0"
+    }}</mat-card-subtitle>
   </mat-card-content>
   <mat-card-actions>
     <div class="add-to-cart-container">
@@ -28,6 +30,7 @@
       </mat-form-field>
       <button
         class="add-to-cart__button"
+        [animatedFeedback]="animatedFeedbackSucces$"
         (click)="addToCart(product, input.value)"
         color="accent"
         mat-raised-button

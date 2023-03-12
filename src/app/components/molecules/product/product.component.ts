@@ -1,6 +1,7 @@
 import { Input } from '@angular/core';
 import { Component } from '@angular/core';
 import { CoreModule } from '@core/core.module';
+import { AnimatedFeedback } from '@core/interfaces';
 import { Product } from '@core/models';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { SnackbarService } from '@core/services/app/snack-bar.service';
@@ -18,7 +19,8 @@ import { Subject } from 'rxjs';
 export class ProductComponent {
   @Input() product!: Product;
 
-  showStockError$: Subject<string> = new Subject();
+  animatedFeedbackError$: Subject<AnimatedFeedback> = new Subject();
+  animatedFeedbackSucces$: Subject<AnimatedFeedback> = new Subject();
   randomImageNumber = 1;
 
   constructor(
@@ -37,8 +39,17 @@ export class ProductComponent {
     });
 
     if (!isAddedSuccessfully) {
-      this.showStockError$.next('stockError');
+      this.animatedFeedbackError$.next({
+        className: 'shakeError',
+        duration: 500,
+      });
       this.snackbarService.openSnackBar('Not enough stock  😓');
+      return;
     }
+
+    this.animatedFeedbackSucces$.next({
+      className: 'addedToCartSuccess',
+      duration: 500,
+    });
   }
 }
