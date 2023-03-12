@@ -8,6 +8,6 @@ export class SnackbarService {
   constructor(private snackBar: MatSnackBar) {}
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, 'OK', { duration: 500000, verticalPosition: 'top' });
+    this.snackBar.open(message, 'OK', { duration: 5000, verticalPosition: 'top' });
   }
 }
