@@ -1,0 +1,15 @@
+<mat-card class="table-wrapper">
+  <div class="table">
+    <mat-toolbar class="table__header" color="primary">
+      <span *ngFor="let label of config.headersLabel">{{ label }}</span>
+    </mat-toolbar>
+    <section *ngFor="let item of data" class="table__row">
+      <span
+        *ngFor="let column of config.columns"
+        class="table__cell"
+        [ngClass]="['text-' + column.align]"
+        >{{ item[column.dataKey] | tableColumnFormat : column.format }}</span
+      >
+    </section>
+  </div>
+</mat-card>

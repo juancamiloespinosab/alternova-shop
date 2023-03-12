@@ -1,0 +1,43 @@
+@use "src/assets/styles/variables" as vars;
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    box-shadow: 0px 0px 50px -30px rgba(0, 0, 0, 0.75);
+  }
+  
+  .table {
+    width: 100%;
+    min-width: 600px;
+    .table__header {
+      border-bottom: 1px solid gray;
+      position: sticky;
+      top: 0;
+    }
+    .table__header,
+    .table__row {
+      display: grid;
+      grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
+      padding: vars.$layout-padding-space;
+    }
+  }
+  
+  .table__cell {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .table__row:nth-child(odd) {
+    background-color: #f5f5f5;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-right {
+    text-align: right;
+  }

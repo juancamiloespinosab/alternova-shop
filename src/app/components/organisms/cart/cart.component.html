@@ -1,28 +1,13 @@
 <aside *ngIf="cartStateService.getCart$() | async as cart" class="cart">
   <h2>Cart</h2>
-  <mat-card class="table-wrapper">
-    <div class="table">
-      <mat-toolbar class="table__header" color="primary">
-        <span class="table__cell">Product</span>
-        <span class="table__cell">Quantity</span>
-        <span class="table__cell">Unit Price</span>
-        <span class="table__cell">Total Price</span>
-      </mat-toolbar>
-      <section *ngFor="let cartProduct of cart.products" class="table__row">
-        <span class="table__cell">{{ cartProduct.product.name }}</span>
-        <span class="table__cell text-center">{{ cartProduct.quantity }}</span>
-        <span class="table__cell">{{
-          cartProduct.product.unit_price | currency
-        }}</span>
-        <span class="table__cell">{{ cartProduct.totalPrice | currency }}</span>
-      </section>
-    </div>
-  </mat-card>
-
+  <app-table
+    [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
+    [config]="tableConfig"
+  ></app-table>
   <footer class="cart__footer">
     <div class="cart__total">
       <span>Total: </span>
-      <h3>{{ cart.totalOrderPrice | currency }}</h3>
+      <h3>{{ cart.totalOrderPrice | currency:'USD':'symbol':'4.0' }}</h3>
     </div>
     <button
       mat-raised-button
