@@ -22,7 +22,7 @@ export class CartManagerService {
       return true;
     }
 
-    const updatedCart: Cart = this.updateCartTotalPrice(
+    const updatedCart: Cart = this.updateCartTotalValues(
       this.updateProductInCartState(newProduct)
     );
 
@@ -34,7 +34,7 @@ export class CartManagerService {
     const newCart: Cart = structuredClone(this.getCartState());
 
     newCart.products.push(newProduct);
-    const updatedCart: Cart = this.updateCartTotalPrice(newCart);
+    const updatedCart: Cart = this.updateCartTotalValues(newCart);
     this.saveCartState(updatedCart);
   }
 
@@ -63,8 +63,10 @@ export class CartManagerService {
     updatedCart.products = cartState.products.map(
       (cartProduct: CartProduct) => {
         if (cartProduct.product.name === newProductName) {
-          const newQuantity: number = newProduct.quantity + cartProduct.quantity;
-          const newTotalPrice: number = newQuantity * newProduct.product.unit_price;
+          const newQuantity: number =
+            newProduct.quantity + cartProduct.quantity;
+          const newTotalPrice: number =
+            newQuantity * newProduct.product.unit_price;
 
           return {
             ...newProduct,
@@ -80,16 +82,20 @@ export class CartManagerService {
     return updatedCart;
   }
 
-  private updateCartTotalPrice(cart: Cart): Cart {
-    const updatedCartTotalPrice: Cart = structuredClone(cart);
+  private updateCartTotalValues(cart: Cart): Cart {
+    const updatedCartTotalValues: Cart = structuredClone(cart);
     let totalOrderPrice = 0;
+    let totalOrderProducts = 0;
 
-    cart.products.forEach(
-      (cartProduct: CartProduct) => (totalOrderPrice += cartProduct.totalPrice)
-    );
+    cart.products.forEach((cartProduct: CartProduct) => {
+      totalOrderPrice += cartProduct.totalPrice;
+      totalOrderProducts += cartProduct.quantity;
+    });
 
-    updatedCartTotalPrice.totalOrderPrice = totalOrderPrice;
-    return updatedCartTotalPrice;
+    updatedCartTotalValues.totalOrderPrice = totalOrderPrice;
+    updatedCartTotalValues.totalOrderProducts = totalOrderProducts;
+
+    return updatedCartTotalValues;
   }
 
   getCartState(): Cart {

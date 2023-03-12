@@ -12,15 +12,7 @@
       <mat-toolbar class="toolbar-wrapper" color="primary">
         <section class="toolbar-container">
           <h1>Alternova Shop</h1>
-          <button
-            style="z-index: 100"
-            mat-icon-button
-            (click)="drawerToggle(drawer)"
-          >
-            <mat-icon>{{
-              drawerState === "open" ? "close" : "shopping_cart"
-            }}</mat-icon>
-          </button>
+          <app-cart-button></app-cart-button>
         </section>
       </mat-toolbar>
     </header>

@@ -11,6 +11,7 @@ export class CartStateService extends State<Cart> {
     this.saveState({
       products: [],
       totalOrderPrice: 0,
+      totalOrderProducts: 0,
     });
   }
 
