@@ -13,7 +13,11 @@
       <mat-toolbar class="toolbar-wrapper" color="primary">
         <section class="toolbar-container">
           <h1>Alternova Shop</h1>
-          <button style="z-index: 100;" mat-icon-button (click)="drawerToggle(drawer)">
+          <button
+            style="z-index: 100"
+            mat-icon-button
+            (click)="drawerToggle(drawer)"
+          >
             <mat-icon>{{
               drawerState === "open" ? "close" : "shopping_cart"
             }}</mat-icon>
@@ -24,8 +28,31 @@
     <article class="content">
       <section class="products-wrapper">
         <div class="products-container">
+          <div class="filters">
+            <mat-form-field appearance="fill">
+              <mat-label>Search product</mat-label>
+              <input #search matInput placeholder="Ex. Iphone" />
+            </mat-form-field>
+            <div class="chip-listbox-wrapper">
+              <mat-chip-listbox
+                #category
+                (change)="($event)"
+                aria-label="Fish selection"
+              >
+                <mat-chip-option>technology</mat-chip-option>
+                <mat-chip-option>sport</mat-chip-option>
+                <mat-chip-option>building</mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+          </div>
+
           <app-products
-            [products]="(productsStateService.getProducts$() | async) ?? []"
+            [products]="
+              (productsStateService.getProducts$()
+                | async
+                | filterBy : 'name' : search.value
+                | filterBy : 'type' : category.value) ?? []
+            "
           ></app-products>
         </div>
       </section>

@@ -7,6 +7,6 @@ import { ShakeErrorDirective } from './directives/shake-error.directive';
 @NgModule({
   declarations: [DownloadJsonDirective, FilterByPipe, ShakeErrorDirective],
   imports: [CommonModule],
-  exports: [DownloadJsonDirective, ShakeErrorDirective],
+  exports: [DownloadJsonDirective, ShakeErrorDirective, FilterByPipe],
 })
 export class CoreModule {}
