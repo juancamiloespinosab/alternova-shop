@@ -10,7 +10,7 @@
     class="chip-listbox-wrapper"
   >
     <mat-chip-listbox [(ngModel)]="categoryValue" aria-label="Fish selection">
-      <mat-chip-option *ngFor="let productCategory of productCategories">{{
+      <mat-chip-option color="accent" *ngFor="let productCategory of productCategories">{{
         productCategory
       }}</mat-chip-option>
     </mat-chip-listbox>
