@@ -1,7 +1,9 @@
 @use "src/assets/styles/variables" as vars;
 
 .image {
+  padding-top: 100%;
   background-size: cover;
+  background-position: center;
 }
 
 .card-title {

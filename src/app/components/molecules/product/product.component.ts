@@ -4,6 +4,7 @@ import { CoreModule } from '@core/core.module';
 import { Product } from '@core/models';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { SnackbarService } from '@core/services/app/snack-bar.service';
+import { UtilsService } from '@core/services/app/utils.service';
 import { SharedModule } from '@shared/shared.module';
 import { Subject } from 'rxjs';
 
@@ -18,11 +19,15 @@ export class ProductComponent {
   @Input() product!: Product;
 
   showStockError$: Subject<string> = new Subject();
+  randomImageNumber = 1;
 
   constructor(
     private cartManagerService: CartManagerService,
-    private snackbarService: SnackbarService
-  ) {}
+    private snackbarService: SnackbarService,
+    private utilsService: UtilsService
+  ) {
+    this.randomImageNumber = this.utilsService.getRandomNumber(6);
+  }
 
   addToCart(product: Product, quantity: string) {
     const isAddedSuccessfully = this.cartManagerService.addProductToCart({

@@ -1,10 +1,11 @@
 <mat-card class="card" shakeError [errorObservable]="showStockError$">
-  <img
-    mat-card-image
+  <div
+    [ngStyle]="{
+      'background-image':
+        'url(assets/img/product-' + randomImageNumber + '.png)'
+    }"
     class="image"
-    src="assets/img/product-1.png"
-    alt="Photo of a Shiba Inu"
-  />
+  ></div>
   <mat-card-content class="card-content">
     <mat-card-title class="card-title">
       <span class="card-title__text">
