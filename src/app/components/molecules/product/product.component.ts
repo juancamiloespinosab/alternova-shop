@@ -1,12 +1,14 @@
 import { Input } from '@angular/core';
 import { Component } from '@angular/core';
+import { CoreModule } from '@core/core.module';
 import { Product } from '@core/models';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
-import { CartStateService } from '@core/services/state/cart-state.service';
+import { SnackbarService } from '@core/services/app/snack-bar.service';
 import { SharedModule } from '@shared/shared.module';
+import { Subject } from 'rxjs';
 
 @Component({
-  imports: [SharedModule],
+  imports: [CoreModule, SharedModule],
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
@@ -15,13 +17,23 @@ import { SharedModule } from '@shared/shared.module';
 export class ProductComponent {
   @Input() product!: Product;
 
-  constructor(private cartManagerService: CartManagerService) {}
+  showStockError$: Subject<string> = new Subject();
+
+  constructor(
+    private cartManagerService: CartManagerService,
+    private snackbarService: SnackbarService
+  ) {}
 
   addToCart(product: Product, quantity: string) {
-    this.cartManagerService.addProductToCart({
+    const isAddedSuccessfully = this.cartManagerService.addProductToCart({
       product: product,
       quantity: +quantity,
       totalPrice: product.unit_price * +quantity,
     });
+
+    if (!isAddedSuccessfully) {
+      this.showStockError$.next('stockError');
+      this.snackbarService.openSnackBar('Not enough stock  😓');
+    }
   }
 }

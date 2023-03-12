@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -14,4 +15,5 @@ export const MATERIAL_MODULES = [
   MatChipsModule,
   MatSidenavModule,
   MatInputModule,
+  MatSnackBarModule,
 ];
