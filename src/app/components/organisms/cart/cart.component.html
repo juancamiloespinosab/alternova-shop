@@ -1,9 +1,31 @@
-<div *ngIf="cartStateService.getCart$() | async as cart">
-  <span *ngFor="let cartProduct of cart.products">
-    {{ cartProduct | json }}
-    <hr />
-  </span>
-  <p>
-    {{ cart.totalOrderPrice }}
-  </p>
-</div>
+<aside *ngIf="cartStateService.getCart$() | async as cart" class="cart">
+  <h2>Cart</h2>
+  <mat-card class="table-wrapper">
+    <div class="table">
+      <mat-toolbar class="table__header" color="primary">
+        <span class="table__cell">Product</span>
+        <span class="table__cell">Quantity</span>
+        <span class="table__cell">Unit Price</span>
+        <span class="table__cell">Total Price</span>
+      </mat-toolbar>
+      <section *ngFor="let cartProduct of cart.products" class="table__row">
+        <span class="table__cell">{{ cartProduct.product.name }}</span>
+        <span class="table__cell text-center">{{ cartProduct.quantity }}</span>
+        <span class="table__cell">{{
+          cartProduct.product.unit_price | currency
+        }}</span>
+        <span class="table__cell">{{ cartProduct.totalPrice | currency }}</span>
+      </section>
+    </div>
+  </mat-card>
+
+  <footer class="cart__footer">
+    <div class="cart__total">
+      <span>Total: </span>
+      <h3>{{ cart.totalOrderPrice | currency }}</h3>
+    </div>
+    <a mat-raised-button class="cart__order-button" color="accent">
+      CREATE ORDER
+    </a>
+  </footer>
+</aside>

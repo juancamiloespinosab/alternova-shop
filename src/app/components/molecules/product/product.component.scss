@@ -1,5 +1,14 @@
 @use "src/assets/styles/variables" as vars;
 
+.card {
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
 .image {
   background-size: cover;
 }
@@ -14,18 +23,18 @@
   overflow: hidden;
 }
 
-.add-to-cart-wrapper {
-  width: 100%;
-}
-
 .add-to-cart-container {
   display: grid;
-  grid-template-columns: 1fr 70%;
-  gap: 10px;
+  grid-template-columns: 1fr 60%;
+  gap: 16px;
 }
 
 .add-to-cart__input {
   text-align: center;
+}
+
+.add-to-cart__button {
+  height: 100%;
 }
 
 ::ng-deep .mat-mdc-form-field-subscript-wrapper {

@@ -5,7 +5,7 @@
 }
 
 .drawer {
-  width: 40vw;
+  width: 50vw;
   @media (max-width: vars.$layout-breakpoint-small) {
     width: 80vw;
   }
@@ -37,7 +37,10 @@
 }
 
 .toolbar-wrapper {
-  height: 5vh;
+  height: 7vh;
+  @media (max-width: vars.$layout-breakpoint-small) {
+    height: 8vh
+  }
 }
 
 .products-wrapper {

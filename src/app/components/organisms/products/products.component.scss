@@ -11,7 +11,4 @@
   );
   gap: vars.$layout-padding-space;
   padding: vars.$layout-padding-space 0;
-  @media (max-width: vars.$layout-breakpoint-small) {
-    grid-template-columns: 1fr;
-  }
 }

@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* -------------------------------------------------------------------- */
+/* ---------------------           RESET          --------------------- */
+/* -------------------------------------------------------------------- */
+
 :root,
 * {
   box-sizing: border-box;
@@ -11,3 +14,38 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+p {
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------- */
+/* ---------------------        SCROLL BAR        --------------------- */
+/* -------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+::-webkit-scrollbar-button:increment,
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #acacac;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+// ::-webkit-scrollbar-track {
+//   border-radius: 10px;
+// }

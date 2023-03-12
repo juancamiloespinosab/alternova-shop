@@ -1,0 +1,73 @@
+@use "src/assets/styles/variables" as vars;
+
+.cart {
+  padding: vars.$layout-padding-space;
+  height: 100%;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+  box-shadow: 0px 0px 50px -30px rgba(0, 0, 0, 0.75);
+}
+
+.table {
+  width: 100%;
+  min-width: 600px;
+  .table__header {
+    border-bottom: 1px solid gray;
+    position: sticky;
+    top: 0;
+  }
+  .table__header,
+  .table__row {
+    display: grid;
+    grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
+    padding: vars.$layout-padding-space;
+  }
+}
+
+.table__cell {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.table__row:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.cart__footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  position: sticky;
+  background-color: white;
+  padding: (vars.$layout-padding-space * 2) vars.$layout-padding-space;
+  .cart__total {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    @media (max-width: vars.$layout-breakpoint-small) {
+      justify-content: center;
+      h3 {
+        margin: 0;
+      }
+    }
+  }
+  @media (max-width: vars.$layout-breakpoint-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px;
+  }
+}
+
+.cart__order-button {
+  height: 100%;
+}
