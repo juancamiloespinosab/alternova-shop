@@ -1,13 +1,14 @@
 <aside *ngIf="cartStateService.getCart$() | async as cart" class="cart">
   <h2>Cart</h2>
-  <app-table
+  <table
+    app-table
     [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
     [config]="tableConfig"
-  ></app-table>
+  ></table>
   <footer class="cart__footer">
     <div class="cart__total">
       <span>Total: </span>
-      <h3>{{ cart.totalOrderPrice | currency:'USD':'symbol':'4.0' }}</h3>
+      <h3>{{ cart.totalOrderPrice | currency : "USD" : "symbol" : "1.0" }}</h3>
     </div>
     <button
       mat-raised-button
