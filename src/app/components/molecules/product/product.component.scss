@@ -1,9 +1,16 @@
 @use "src/assets/styles/variables" as vars;
 
-.image {
+.image-wrapper {
+  margin: 0;
   padding-top: 100%;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  top: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .card-title {

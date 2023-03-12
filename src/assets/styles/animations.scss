@@ -55,3 +55,21 @@
     transform: scale(1);
   }
 }
+
+.fade-up--off {
+  opacity: 0;
+}
+
+.fade-up--on {
+  animation: fade-up 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
