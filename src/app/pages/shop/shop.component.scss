@@ -47,24 +47,3 @@
 .products-wrapper {
   padding: 0 16px;
 }
-
-.filters {
-  position: sticky;
-  top: 6.5vh;
-  background-color: white;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: vars.$layout-padding-space;
-}
-
-.chip-listbox-wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow-x: scroll;
-  padding: 0 vars.$layout-padding-space;
-}
-
-::ng-deep .mdc-evolution-chip-set__chips {
-  flex-flow: nowrap !important;
-}

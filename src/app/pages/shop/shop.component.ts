@@ -6,9 +6,10 @@ import { ResponsiveService } from '@core/services/app/responsive.service';
 import { CartComponent } from '@components/organisms/cart/cart.component';
 import { ProductsComponent } from '@components/organisms/products/products.component';
 import { CoreModule } from '@core/core.module';
+import { FiltersComponent } from '@components/molecules/filters/filters.component';
 
 @Component({
-  imports: [CoreModule, SharedModule, CartComponent, ProductsComponent],
+  imports: [CoreModule, SharedModule, CartComponent, ProductsComponent, FiltersComponent],
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],

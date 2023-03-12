@@ -1,0 +1,13 @@
+<mat-card class="filters">
+  <mat-form-field appearance="fill">
+    <mat-label>Search product</mat-label>
+    <input [(ngModel)]="searchValue" matInput placeholder="Ex. Iphone" />
+  </mat-form-field>
+  <div class="chip-listbox-wrapper">
+    <mat-chip-listbox [(ngModel)]="categoryValue" aria-label="Fish selection">
+      <mat-chip-option>technology</mat-chip-option>
+      <mat-chip-option>sport</mat-chip-option>
+      <mat-chip-option>building</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+</mat-card>

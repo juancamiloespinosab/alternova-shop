@@ -7,7 +7,6 @@
   >
     <app-cart></app-cart>
   </mat-drawer>
-
   <main>
     <header class="navbar">
       <mat-toolbar class="toolbar-wrapper" color="primary">
@@ -28,55 +27,13 @@
     <article class="content">
       <section class="products-wrapper">
         <div class="products-container">
-          <mat-card class="filters">
-            <mat-form-field appearance="fill">
-              <mat-label>Search product</mat-label>
-              <input #search matInput placeholder="Ex. Iphone" />
-            </mat-form-field>
-            <div class="chip-listbox-wrapper">
-              <mat-chip-listbox
-                #category
-                (change)="($event)"
-                aria-label="Fish selection"
-              >
-                <mat-chip-option>technology</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>sport</mat-chip-option>
-                <mat-chip-option>building</mat-chip-option>
-              </mat-chip-listbox>
-            </div>
-          </mat-card>
-
+          <app-filters #filters></app-filters>
           <app-products
             [products]="
               (productsStateService.getProducts$()
                 | async
-                | filterBy : 'name' : search.value
-                | filterBy : 'type' : category.value) ?? []
+                | filterBy : 'name' : filters.searchValue
+                | filterBy : 'type' : filters.categoryValue) ?? []
             "
           ></app-products>
         </div>
