@@ -24,8 +24,14 @@
       <span>Total: </span>
       <h3>{{ cart.totalOrderPrice | currency }}</h3>
     </div>
-    <a mat-raised-button class="cart__order-button" color="accent">
+    <button
+      mat-raised-button
+      downloadJson
+      [json]="cart"
+      class="cart__order-button"
+      color="accent"
+    >
       CREATE ORDER
-    </a>
+    </button>
   </footer>
 </aside>
