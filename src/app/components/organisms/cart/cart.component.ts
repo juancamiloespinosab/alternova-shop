@@ -61,7 +61,7 @@ export class CartComponent implements OnDestroy {
   ) {}
 
   clearCart() {
-    this.cartManagerService.clearCart();
+    this.cartManagerService.removeAllProducts();
   }
 
   subscribeToTableActionsObservable(
@@ -75,7 +75,7 @@ export class CartComponent implements OnDestroy {
   tableActionsHandler(tableAction: TableAction) {
     const DISPATCH_CART_ACTION_DEFAULT = null;
     const DISPATCH_CART_ACTION: { [key: string]: any } = {
-      remove: this.cartManagerService.removeProductFromCart(tableAction.item),
+      remove: this.cartManagerService.removeProduct(tableAction.item),
     };
     DISPATCH_CART_ACTION[tableAction.actionName] ||
       DISPATCH_CART_ACTION_DEFAULT;
