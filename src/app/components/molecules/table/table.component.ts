@@ -24,10 +24,7 @@ export class TableComponent implements AfterViewInit {
   @Input() data!: any;
   @Input() config!: TableConfig;
 
-  @Output() actionsObservable: EventEmitter<Observable<TableAction>> =
-    new EventEmitter();
-
-  action$: Subject<TableAction> = new Subject();
+  @Output() actions: EventEmitter<TableAction> = new EventEmitter();
 
   constructor() {}
 
@@ -36,10 +33,8 @@ export class TableComponent implements AfterViewInit {
       actionName: action.name,
       item: item,
     };
-    this.action$.next(tableAction);
+    this.actions.emit(tableAction);
   }
 
-  ngAfterViewInit(): void {
-    this.actionsObservable.emit(this.action$);
-  }
+  ngAfterViewInit(): void {}
 }

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { ProductCategoriesStateService } from '@core/services/state/product-categories-state.service';
+import { ResponsiveService } from '@core/services/app/responsive.service';
 
 @Component({
   imports: [CommonModule, CoreModule, SharedModule, FormsModule],
@@ -13,10 +14,35 @@ import { ProductCategoriesStateService } from '@core/services/state/product-cate
   standalone: true,
 })
 export class FiltersComponent {
-  searchValue = '';
-  categoryValue = '';
+  value: { [key: string]: string | string[] } = {
+    search: '',
+    category: [],
+  };
 
   constructor(
-    public productCategoriesStateService: ProductCategoriesStateService
+    public productCategoriesStateService: ProductCategoriesStateService,
+    public responsiveService: ResponsiveService
   ) {}
+
+  getAppliedFiltersNumber(): number {
+    let appliedFiltersCount = 0;
+
+    for (let [key, value] of Object.entries(this.value)) {
+      if (typeof value === 'string') {
+        value !== '' && value !== undefined ? appliedFiltersCount++ : 0;
+      }
+
+      if (value instanceof Array) {
+        value.forEach(() => appliedFiltersCount++);
+      }
+    }
+
+    return appliedFiltersCount;
+  }
+
+  clearFilters() {
+    for (let [key, value] of Object.entries(this.value)) {
+      this.value[key] = '';
+    }
+  }
 }

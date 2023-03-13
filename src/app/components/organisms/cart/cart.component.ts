@@ -64,14 +64,6 @@ export class CartComponent implements OnDestroy {
     this.cartManagerService.removeAllProducts();
   }
 
-  subscribeToTableActionsObservable(
-    actionaObservable: Observable<TableAction>
-  ) {
-    this.actionaObservableSubscription = actionaObservable.subscribe(
-      (tableAction: TableAction) => this.tableActionsHandler(tableAction)
-    );
-  }
-
   tableActionsHandler(tableAction: TableAction) {
     const DISPATCH_CART_ACTION_DEFAULT = null;
     const DISPATCH_CART_ACTION: { [key: string]: any } = {

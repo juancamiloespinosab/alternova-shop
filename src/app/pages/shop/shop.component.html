@@ -28,8 +28,8 @@
             [products]="
               (productsStateService.getProducts$()
                 | async
-                | filterBy : 'name' : filters.searchValue
-                | filterBy : 'type' : filters.categoryValue) ?? []
+                | filterBy : 'name' : filters.value['search']
+                | filterBy : 'type' : filters.value['category']) ?? []
             "
           ></app-products>
         </div>

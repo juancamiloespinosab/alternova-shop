@@ -19,7 +19,7 @@
       app-table
       [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
       [config]="tableConfig"
-      (actionsObservable)="subscribeToTableActionsObservable($event)"
+      (actions)="tableActionsHandler($event)"
     ></table>
     <footer class="cart__footer">
       <div class="cart__total">

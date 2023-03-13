@@ -52,9 +52,4 @@ export class ProductComponent {
       duration: 500,
     });
   }
-
-  imgLoad() {
-    console.log(333);
-    
-  }
 }
