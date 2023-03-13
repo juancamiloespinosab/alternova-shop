@@ -1,13 +1,28 @@
-<mat-card class="filters">
+<mat-card *ngIf="!responsiveService.isMobile" class="filters">
+  <ng-container [ngTemplateOutlet]="filters"></ng-container>
+</mat-card>
+<mat-expansion-panel *ngIf="responsiveService.isMobile">
+  <mat-expansion-panel-header>
+    <p>Filters ({{ getAppliedFiltersNumber() }})</p>
+  </mat-expansion-panel-header>
+  <div class="filters">
+    <ng-container [ngTemplateOutlet]="filters"></ng-container>
+  </div>
+  <mat-action-row>
+    <button mat-button color="accent" (click)="clearFilters()">Clear</button>
+  </mat-action-row>
+</mat-expansion-panel>
+
+<ng-template #filters>
   <mat-form-field appearance="fill">
     <mat-label>Search product</mat-label>
-    <input [(ngModel)]="searchValue" matInput placeholder="Ex. Iphone" />
+    <input [(ngModel)]="value['search']" matInput placeholder="Ex. Iphone" />
     <button
-      *ngIf="searchValue"
+      *ngIf="value['search'] && responsiveService.isMobile"
       matSuffix
       mat-icon-button
       aria-label="Clear"
-      (click)="searchValue = ''"
+      (click)="value['search'] = ''"
     >
       <mat-icon>close</mat-icon>
     </button>
@@ -18,7 +33,17 @@
     "
     class="chip-listbox-wrapper"
   >
-    <mat-chip-listbox [(ngModel)]="categoryValue" aria-label="Fish selection">
+    <mat-chip-listbox [(ngModel)]="value['category']" multiple="true">
+      <mat-chip-option
+        color="accent"
+        *ngFor="let productCategory of productCategories"
+        >{{ productCategory }}</mat-chip-option
+      >
+      <mat-chip-option
+        color="accent"
+        *ngFor="let productCategory of productCategories"
+        >{{ productCategory }}</mat-chip-option
+      >
       <mat-chip-option
         color="accent"
         *ngFor="let productCategory of productCategories"
@@ -26,4 +51,4 @@
       >
     </mat-chip-listbox>
   </div>
-</mat-card>
+</ng-template>
