@@ -31,7 +31,7 @@ export class CartManagerService {
   }
 
   removeProduct(product: CartProduct): void {
-    const newCart: Cart = this.removeProductByNameAndCategoryFromCart(product);
+    const newCart: Cart = this.removeProductFromCart(product);
     const updatedCart: Cart = this.updateCartTotalValues(newCart);
     this.saveCartState(updatedCart);
   }
@@ -41,15 +41,13 @@ export class CartManagerService {
     this.saveCartState(newCart);
   }
 
-  private removeProductByNameAndCategoryFromCart(
-    removeCartProduct: CartProduct
-  ): Cart {
+  private removeProductFromCart(removeCartProduct: CartProduct): Cart {
     const newCart: Cart = this.cartStateService.getCart();
+    const removeCartProductId: string =
+      this.getCartProductId(removeCartProduct);
 
     newCart.products = newCart.products.filter((cartProduct: CartProduct) => {
-      const cartProductId = cartProduct.product.name + cartProduct.product.type;
-      const removeCartProductId =
-        removeCartProduct.product.name + cartProduct.product.type;
+      const cartProductId: string = this.getCartProductId(cartProduct);
 
       return cartProductId !== removeCartProductId;
     });
@@ -85,11 +83,13 @@ export class CartManagerService {
   private updateProductInCartState(newProduct: CartProduct): Cart {
     const cartState: Cart = this.getCartState();
     const updatedCart: Cart = cartState;
-    const newProductName: string = newProduct.product.name;
+    const newProductId: string = this.getCartProductId(newProduct);
 
     updatedCart.products = cartState.products.map(
       (cartProduct: CartProduct) => {
-        if (cartProduct.product.name === newProductName) {
+        const cartProductId: string = this.getCartProductId(cartProduct);
+
+        if (cartProductId === newProductId) {
           const newQuantity: number =
             newProduct.quantity + cartProduct.quantity;
           const newTotalPrice: number =
@@ -125,7 +125,11 @@ export class CartManagerService {
     return updatedCartTotalValues;
   }
 
-  getCartState(): Cart {
+  private getCartProductId(cartProduct: CartProduct): string {
+    return cartProduct.product.name + cartProduct.product.type;
+  }
+
+  private getCartState(): Cart {
     return this.cartStateService.getCart();
   }
 }
