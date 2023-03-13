@@ -59,10 +59,10 @@ export class StockValidatorService {
   }
 
   private getCartState() {
-    return structuredClone(this.cartStateService.getCart());
+    return this.cartStateService.getCart();
   }
 
   private getProductsState() {
-    return structuredClone(this.productsStateService.getProducts());
+    return this.productsStateService.getProducts();
   }
 }

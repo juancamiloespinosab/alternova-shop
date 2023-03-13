@@ -1,23 +1,43 @@
 <aside *ngIf="cartStateService.getCart$() | async as cart" class="cart">
-  <h2>Cart</h2>
-  <table
-    app-table
-    [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
-    [config]="tableConfig"
-  ></table>
-  <footer class="cart__footer">
-    <div class="cart__total">
-      <span>Total: </span>
-      <h3>{{ cart.totalOrderPrice | currency : "USD" : "symbol" : "1.0" }}</h3>
-    </div>
+  <header class="cart__header">
+    <h2>Cart ({{ cart.products.length }})</h2>
     <button
-      mat-raised-button
-      downloadJson
-      [json]="cart"
-      class="cart__order-button"
+      mat-button
       color="accent"
+      class="cart__clear-button"
+      (click)="clearCart()"
+      [disabled]="isCartEmpty(cart)"
     >
-      CREATE ORDER
+      Clear
     </button>
-  </footer>
+  </header>
+  <section class="cart__no-products" *ngIf="isCartEmpty(cart); else table">
+    <p>Your cart is empty</p>
+  </section>
+  <ng-template #table>
+    <table
+      app-table
+      [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
+      [config]="tableConfig"
+      (actionsObservable)="subscribeToTableActionsObservable($event)"
+    ></table>
+    <footer class="cart__footer">
+      <div class="cart__total">
+        <span>Total: </span>
+        <h3>
+          {{ cart.totalOrderPrice | currency : "USD" : "symbol" : "1.0" }}
+        </h3>
+      </div>
+      <button
+        mat-raised-button
+        downloadJson
+        [json]="cart"
+        [jsonName]="'Order'"
+        class="cart__order-button"
+        color="accent"
+      >
+        CREATE ORDER
+      </button>
+    </footer>
+  </ng-template>
 </aside>

@@ -12,7 +12,7 @@ export class State<T> {
   }
 
   protected get observableValue() {
-    return this.observablePrivate.getValue();
+    return structuredClone(this.observablePrivate.getValue());
   }
 
   protected set observableData(data: T) {

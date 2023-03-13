@@ -16,6 +16,7 @@ export class TableAdapterFromPipe implements PipeTransform {
           const { name, unit_price } = product;
 
           return {
+            product,
             name,
             unit_price,
             quantity,
