@@ -1,12 +1,12 @@
 <mat-card class="card" [animatedFeedback]="animatedFeedbackError$">
-  <figure class="image-wrapper">
-    <img
-      #image
-      (load)="image.classList.add('fade-up--on')"
-      [src]="'assets/img/product-' + randomImageNumber + '.png'"
-      class="image fade-up--off"
-    />
-  </figure>
+  <img
+    #image
+    width="600"
+    height="600"
+    (load)="image.classList.add('fade-up--on')"
+    [ngSrc]="'assets/img/product-' + randomImageNumber + '.png'"
+    class="image fade-up--off"
+  />
   <mat-card-content class="card-content">
     <mat-card-title class="card-title">
       <span class="card-title__text">
