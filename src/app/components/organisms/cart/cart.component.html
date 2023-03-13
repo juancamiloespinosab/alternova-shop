@@ -6,29 +6,37 @@
       color="accent"
       class="cart__clear-button"
       (click)="clearCart()"
+      [disabled]="isCartEmpty(cart)"
     >
       Clear
     </button>
   </header>
-  <table
-    app-table
-    [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
-    [config]="tableConfig"
-    (actionsObservable)="subscribeToTableActionsObservable($event)"
-  ></table>
-  <footer class="cart__footer">
-    <div class="cart__total">
-      <span>Total: </span>
-      <h3>{{ cart.totalOrderPrice | currency : "USD" : "symbol" : "1.0" }}</h3>
-    </div>
-    <button
-      mat-raised-button
-      downloadJson
-      [json]="cart"
-      class="cart__order-button"
-      color="accent"
-    >
-      CREATE ORDER
-    </button>
-  </footer>
+  <section class="cart__no-products" *ngIf="isCartEmpty(cart); else table">
+    <p>Your cart is empty</p>
+  </section>
+  <ng-template #table>
+    <table
+      app-table
+      [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
+      [config]="tableConfig"
+      (actionsObservable)="subscribeToTableActionsObservable($event)"
+    ></table>
+    <footer class="cart__footer">
+      <div class="cart__total">
+        <span>Total: </span>
+        <h3>
+          {{ cart.totalOrderPrice | currency : "USD" : "symbol" : "1.0" }}
+        </h3>
+      </div>
+      <button
+        mat-raised-button
+        downloadJson
+        [json]="cart"
+        class="cart__order-button"
+        color="accent"
+      >
+        CREATE ORDER
+      </button>
+    </footer>
+  </ng-template>
 </aside>

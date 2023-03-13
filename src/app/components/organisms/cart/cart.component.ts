@@ -4,6 +4,7 @@ import { CoreModule } from '@core/core.module';
 import { TABLE_ADAPTER_VALUE, TABLE_COLUMN_FORMAT_VALUE } from '@core/enums';
 import { TableConfig } from '@core/interfaces';
 import { TableAction } from '@core/interfaces/table-action.interface';
+import { Cart } from '@core/models';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { CartStateService } from '@core/services/state/cart-state.service';
 import { SharedModule } from '@shared/shared.module';
@@ -78,6 +79,10 @@ export class CartComponent implements OnDestroy {
     };
     DISPATCH_CART_ACTION[tableAction.actionName] ||
       DISPATCH_CART_ACTION_DEFAULT;
+  }
+
+  isCartEmpty(cart: Cart) {
+    return cart.products.length === 0
   }
 
   ngOnDestroy(): void {
