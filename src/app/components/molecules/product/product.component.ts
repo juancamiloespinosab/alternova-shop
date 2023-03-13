@@ -32,7 +32,7 @@ export class ProductComponent {
   }
 
   addToCart(product: Product, quantity: string) {
-    const isAddedSuccessfully = this.cartManagerService.addProductToCart({
+    const isAddedSuccessfully = this.cartManagerService.addProduct({
       product: product,
       quantity: +quantity,
       totalPrice: product.unit_price * +quantity,

@@ -12,7 +12,7 @@ export class CartManagerService {
     private stockValidatorService: StockValidatorService
   ) {}
 
-  addProductToCart(newProduct: CartProduct): boolean {
+  addProduct(newProduct: CartProduct): boolean {
     if (!this.isEnoughProductInStock(newProduct)) {
       return false;
     }
@@ -30,13 +30,13 @@ export class CartManagerService {
     return true;
   }
 
-  removeProductFromCart(product: CartProduct): void {
+  removeProduct(product: CartProduct): void {
     const newCart: Cart = this.removeProductByNameAndCategoryFromCart(product);
     const updatedCart: Cart = this.updateCartTotalValues(newCart);
     this.saveCartState(updatedCart);
   }
 
-  clearCart(): void {
+  removeAllProducts(): void {
     const newCart: Cart = this.cartStateService.getInitCart();
     this.saveCartState(newCart);
   }
