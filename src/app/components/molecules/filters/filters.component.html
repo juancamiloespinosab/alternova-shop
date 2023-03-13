@@ -2,6 +2,15 @@
   <mat-form-field appearance="fill">
     <mat-label>Search product</mat-label>
     <input [(ngModel)]="searchValue" matInput placeholder="Ex. Iphone" />
+    <button
+      *ngIf="searchValue"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="searchValue = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
   <div
     *ngIf="
@@ -10,9 +19,11 @@
     class="chip-listbox-wrapper"
   >
     <mat-chip-listbox [(ngModel)]="categoryValue" aria-label="Fish selection">
-      <mat-chip-option color="accent" *ngFor="let productCategory of productCategories">{{
-        productCategory
-      }}</mat-chip-option>
+      <mat-chip-option
+        color="accent"
+        *ngFor="let productCategory of productCategories"
+        >{{ productCategory }}</mat-chip-option
+      >
     </mat-chip-listbox>
   </div>
 </mat-card>

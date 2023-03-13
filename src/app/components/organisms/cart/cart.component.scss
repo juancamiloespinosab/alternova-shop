@@ -5,6 +5,16 @@
   height: 100%;
 }
 
+.cart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart__no-products {
+  padding: vars.$layout-padding-space;
+}
+
 .cart__footer {
   display: grid;
   grid-template-columns: 1fr 1fr;

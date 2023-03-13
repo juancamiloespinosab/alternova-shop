@@ -6,13 +6,15 @@ import { State } from './state';
   providedIn: 'root',
 })
 export class CartStateService extends State<Cart> {
+  private initCart = {
+    products: [],
+    totalOrderPrice: 0,
+    totalOrderProducts: 0,
+  };
+
   constructor() {
     super();
-    this.saveState({
-      products: [],
-      totalOrderPrice: 0,
-      totalOrderProducts: 0,
-    });
+    this.saveState(this.initCart);
   }
 
   saveState(cart: Cart) {
@@ -25,5 +27,9 @@ export class CartStateService extends State<Cart> {
 
   getCart$() {
     return this.observable;
+  }
+
+  getInitCart() {
+    return this.initCart;
   }
 }

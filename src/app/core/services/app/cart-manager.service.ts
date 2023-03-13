@@ -30,8 +30,35 @@ export class CartManagerService {
     return true;
   }
 
+  removeProductFromCart(product: CartProduct): void {
+    const newCart: Cart = this.removeProductByNameAndCategoryFromCart(product);
+    const updatedCart: Cart = this.updateCartTotalValues(newCart);
+    this.saveCartState(updatedCart);
+  }
+
+  clearCart(): void {
+    const newCart: Cart = this.cartStateService.getInitCart();
+    this.saveCartState(newCart);
+  }
+
+  private removeProductByNameAndCategoryFromCart(
+    removeCartProduct: CartProduct
+  ): Cart {
+    const newCart: Cart = this.cartStateService.getCart();
+
+    newCart.products = newCart.products.filter((cartProduct: CartProduct) => {
+      const cartProductId = cartProduct.product.name + cartProduct.product.type;
+      const removeCartProductId =
+        removeCartProduct.product.name + cartProduct.product.type;
+
+      return cartProductId !== removeCartProductId;
+    });
+
+    return newCart;
+  }
+
   private saveNewProductInCartState(newProduct: CartProduct) {
-    const newCart: Cart = structuredClone(this.getCartState());
+    const newCart: Cart = this.getCartState();
 
     newCart.products.push(newProduct);
     const updatedCart: Cart = this.updateCartTotalValues(newCart);
@@ -57,7 +84,7 @@ export class CartManagerService {
 
   private updateProductInCartState(newProduct: CartProduct): Cart {
     const cartState: Cart = this.getCartState();
-    const updatedCart: Cart = structuredClone(cartState);
+    const updatedCart: Cart = cartState;
     const newProductName: string = newProduct.product.name;
 
     updatedCart.products = cartState.products.map(
@@ -83,7 +110,7 @@ export class CartManagerService {
   }
 
   private updateCartTotalValues(cart: Cart): Cart {
-    const updatedCartTotalValues: Cart = structuredClone(cart);
+    const updatedCartTotalValues: Cart = cart;
     let totalOrderPrice = 0;
     let totalOrderProducts = 0;
 
@@ -99,6 +126,6 @@ export class CartManagerService {
   }
 
   getCartState(): Cart {
-    return structuredClone(this.cartStateService.getCart());
+    return this.cartStateService.getCart();
   }
 }

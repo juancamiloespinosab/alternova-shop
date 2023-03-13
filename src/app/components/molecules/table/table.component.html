@@ -2,6 +2,7 @@
   <div class="table">
     <mat-toolbar class="table__header" color="primary">
       <span *ngFor="let label of config.headersLabel">{{ label }}</span>
+      <span *ngIf="config.actions"></span>
     </mat-toolbar>
     <section *ngFor="let item of data" class="table__row">
       <span
@@ -10,6 +11,17 @@
         [ngClass]="['text-' + column.align]"
         >{{ item[column.dataKey] | tableColumnFormat : column.format }}</span
       >
+      <div *ngIf="config.actions" class="table__cell">
+        <button
+          mat-icon-button
+          *ngFor="let action of config.actions"
+          (click)="emitAction(item, action)"
+        >
+          <span
+            ><mat-icon [color]="action.color">{{ action.icon }}</mat-icon></span
+          >
+        </button>
+      </div>
     </section>
   </div>
 </mat-card>
