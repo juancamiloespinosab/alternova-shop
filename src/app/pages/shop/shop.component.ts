@@ -39,7 +39,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   constructor(
     public productsStateService: ProductsStateService,
     public responsiveService: ResponsiveService,
-    private drawerService: DrawerService
+    public drawerService: DrawerService
   ) {}
 
   ngOnInit(): void {
@@ -52,10 +52,14 @@ export class ShopComponent implements OnInit, OnDestroy {
         this.drawer
           .toggle()
           .then((status: string) =>
-            this.drawerService.drawerState$.next(status)
+            this.updateDrawerStatus(status === 'open' ? true : false)
           );
       }
     );
+  }
+
+  updateDrawerStatus(status: boolean) {
+    this.drawerService.isDrawerOpen$.next(status);
   }
 
   ngOnDestroy(): void {

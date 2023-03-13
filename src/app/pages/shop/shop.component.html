@@ -1,8 +1,12 @@
-<mat-drawer-container class="drawer-container" [hasBackdrop]="false">
+<mat-drawer-container
+  class="drawer-container"
+  [hasBackdrop]="responsiveService.isMobile"
+>
   <mat-drawer
     class="drawer"
     position="end"
     #drawer
+    (openedChange)="updateDrawerStatus($event)"
     [mode]="responsiveService.isMobile ? 'push' : 'side'"
   >
     <app-cart></app-cart>

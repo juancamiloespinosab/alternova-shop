@@ -1,14 +1,13 @@
 <button
-  *ngIf="drawerService.drawerState$ | async as drawerState"
   matBadgeSize="medium"
   [matBadge]="cartStateService.getCart().totalOrderProducts"
   matBadgePosition="after"
   matBadgeColor="accent"
-  [matBadgeHidden]="drawerState === 'open' ? true : false"
+  [matBadgeHidden]="drawerService.isDrawerOpen$ | async"
   mat-icon-button
   (click)="drawerToggle()"
 >
   <mat-icon class="icon">{{
-    drawerState === "open" ? "close" : "shopping_cart"
+    (drawerService.isDrawerOpen$ | async) ? "close" : "shopping_cart"
   }}</mat-icon>
 </button>

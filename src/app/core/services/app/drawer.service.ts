@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class DrawerService {
-  drawerState$: BehaviorSubject<string> = new BehaviorSubject('close');
+  isDrawerOpen$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   toggleDrawer$: Subject<boolean> = new Subject();
 
   constructor() {}
