@@ -18,7 +18,7 @@
           (click)="emitAction(item, action)"
         >
           <span
-            ><mat-icon>{{ action.icon }}</mat-icon></span
+            ><mat-icon [color]="action.color">{{ action.icon }}</mat-icon></span
           >
         </button>
       </div>

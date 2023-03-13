@@ -47,7 +47,7 @@ export class CartComponent implements OnDestroy {
       {
         name: 'remove',
         icon: 'delete',
-        color: 'accent',
+        color: 'warn',
       },
     ],
   };
