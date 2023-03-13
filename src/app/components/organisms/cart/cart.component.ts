@@ -3,6 +3,7 @@ import { TableComponent } from '@components/molecules/table/table.component';
 import { CoreModule } from '@core/core.module';
 import { TABLE_ADAPTER_VALUE, TABLE_COLUMN_FORMAT_VALUE } from '@core/enums';
 import { TableConfig } from '@core/interfaces';
+import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { CartStateService } from '@core/services/state/cart-state.service';
 import { SharedModule } from '@shared/shared.module';
 
@@ -14,7 +15,6 @@ import { SharedModule } from '@shared/shared.module';
   standalone: true,
 })
 export class CartComponent {
-
   TABLE_ADAPTER_VALUE = TABLE_ADAPTER_VALUE;
 
   tableConfig: TableConfig = {
@@ -42,6 +42,13 @@ export class CartComponent {
       },
     ],
   };
-  
-  constructor(public cartStateService: CartStateService) {}
+
+  constructor(
+    public cartStateService: CartStateService,
+    private cartManagerService: CartManagerService
+  ) {}
+
+  clearCart() {
+    this.cartManagerService.clearCart();
+  }
 }

@@ -5,6 +5,12 @@
   height: 100%;
 }
 
+.cart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cart__footer {
   display: grid;
   grid-template-columns: 1fr 1fr;

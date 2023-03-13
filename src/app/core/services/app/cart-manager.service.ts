@@ -30,6 +30,11 @@ export class CartManagerService {
     return true;
   }
 
+  clearCart(): void {
+    const newCart: Cart = this.cartStateService.getInitCart();
+    this.saveCartState(newCart);
+  }
+
   private saveNewProductInCartState(newProduct: CartProduct) {
     const newCart: Cart = structuredClone(this.getCartState());
 

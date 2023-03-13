@@ -1,6 +1,7 @@
 import { Input } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { Directive } from '@angular/core';
+import { Cart } from '@core/models';
 
 @Directive({
   selector: 'button[downloadJson]',
@@ -8,10 +9,14 @@ import { Directive } from '@angular/core';
 export class DownloadJsonDirective {
   constructor() {}
 
-  @Input() json: any;
+  @Input() json!: Cart;
 
   @HostListener('click')
   onClick() {
+    if (this.json.totalOrderProducts === 0) {
+      return;
+    }
+
     const dataStr = JSON.stringify(this.json);
     const dataUri =
       'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
