@@ -1,12 +1,20 @@
 <aside *ngIf="cartStateService.getCart$() | async as cart" class="cart">
   <header class="cart__header">
     <h2>Cart ({{ cart.products.length }})</h2>
-    <button mat-button color="accent" class="cart__clear-button" (click)="clearCart()">Clear</button>
+    <button
+      mat-button
+      color="accent"
+      class="cart__clear-button"
+      (click)="clearCart()"
+    >
+      Clear
+    </button>
   </header>
   <table
     app-table
     [data]="cart | tableAdapterFrom : TABLE_ADAPTER_VALUE.CART"
     [config]="tableConfig"
+    (actionsObservable)="subscribeToTableActionsObservable($event)"
   ></table>
   <footer class="cart__footer">
     <div class="cart__total">

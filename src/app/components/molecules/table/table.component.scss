@@ -13,7 +13,7 @@
 
 .table {
   width: 100%;
-  min-width: 600px;
+  min-width: 700px;
   .table__header {
     border-bottom: 1px solid gray;
     position: sticky;
@@ -24,6 +24,7 @@
     display: grid;
     grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
     padding: vars.$layout-padding-space;
+    align-items: center;
   }
 }
 
