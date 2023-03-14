@@ -33,7 +33,7 @@ export class FiltersComponent {
       }
 
       if (value instanceof Array) {
-        value.forEach(() => appliedFiltersCount++);
+        appliedFiltersCount += value.length;
       }
     }
 

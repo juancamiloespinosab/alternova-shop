@@ -3,12 +3,11 @@ import { Component } from '@angular/core';
 import { CoreModule } from '@core/core.module';
 import { AnimatedFeedback } from '@core/interfaces';
 import { Product } from '@core/models';
-import { IteratorPipe } from '@core/pipes/iterator.pipe';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { SnackbarService } from '@core/services/app/snack-bar.service';
-import { UtilsService } from '@core/services/app/utils.service';
 import { SharedModule } from '@shared/shared.module';
 import { Subject } from 'rxjs';
+import { Random } from '@utils/random.util';
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 
 @Component({
@@ -27,10 +26,9 @@ export class ProductComponent {
 
   constructor(
     private cartManagerService: CartManagerService,
-    private snackbarService: SnackbarService,
-    private utilsService: UtilsService
+    private snackbarService: SnackbarService
   ) {
-    this.randomImageNumber = this.utilsService.getRandomNumber(6);
+    this.randomImageNumber = Random.until(6);
   }
 
   addToCart(product: Product, quantity: number) {
