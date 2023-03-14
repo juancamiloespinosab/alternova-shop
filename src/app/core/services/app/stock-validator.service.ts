@@ -13,8 +13,10 @@ export class StockValidatorService {
   ) {}
 
   isEnoughProductInStock(newProduct: CartProduct): boolean {
-    const stateProduct: Product | undefined = this.findProductInProductsState(newProduct);
-    const cartProduct: CartProduct | undefined = this.findProductInCartState(newProduct);
+    const stateProduct: Product | undefined =
+      this.findProductInProductsState(newProduct);
+    const cartProduct: CartProduct | undefined =
+      this.findProductInCartState(newProduct);
 
     if (stateProduct) {
       return this.isQuantityOfStockHigherThanRequested({
@@ -40,26 +42,32 @@ export class StockValidatorService {
     product: CartProduct
   ): Product | undefined {
     const productsState: Product[] = this.getProductsState();
-    const productName: string = product.product.name;
+    const newProductId: string = this.getCartProductId(product);
 
-    return productsState.find(
-      (cartProduct: Product) => cartProduct.name === productName
-    );
+    return productsState.find((stateProduct: Product) => {
+      const stateProductId: string = stateProduct.name + stateProduct.type;
+      return stateProductId === newProductId;
+    });
   }
 
   private findProductInCartState(
     product: CartProduct
   ): CartProduct | undefined {
     const cartState: Cart = this.getCartState();
-    const productName: string = product.product.name;
+    const newProductId: string = this.getCartProductId(product);
 
-    return cartState.products.find(
-      (cartProduct: CartProduct) => cartProduct.product.name === productName
-    );
+    return cartState.products.find((cartProduct: CartProduct) => {
+      const cartProductId: string = this.getCartProductId(cartProduct);
+      return cartProductId === newProductId;
+    });
   }
 
   private getCartState() {
     return this.cartStateService.getCart();
+  }
+
+  private getCartProductId(cartProduct: CartProduct): string {
+    return cartProduct.product.name + cartProduct.product.type;
   }
 
   private getProductsState() {
