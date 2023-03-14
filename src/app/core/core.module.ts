@@ -5,6 +5,7 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
 import { TableAdapterFromPipe } from './pipes/table-adapter-from.pipe';
 import { TableColumnFormatPipe } from './pipes/table-column-format.pipe';
 import { AnimatedFeedbackDirective } from './directives/animated-feedback.directive';
+import { IteratorPipe } from './pipes/iterator.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AnimatedFeedbackDirective } from './directives/animated-feedback.direct
     TableAdapterFromPipe,
     TableColumnFormatPipe,
     AnimatedFeedbackDirective,
+    IteratorPipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -21,6 +23,7 @@ import { AnimatedFeedbackDirective } from './directives/animated-feedback.direct
     TableAdapterFromPipe,
     TableColumnFormatPipe,
     AnimatedFeedbackDirective,
+    IteratorPipe
   ],
 })
 export class CoreModule {}

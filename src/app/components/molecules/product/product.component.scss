@@ -18,12 +18,8 @@
 .add-to-cart-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 60%;
+  grid-template-columns: 1fr 55%;
   gap: 16px;
-}
-
-.add-to-cart__input {
-  text-align: center;
 }
 
 .add-to-cart__button {

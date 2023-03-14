@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 export const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -20,4 +21,5 @@ export const MATERIAL_MODULES = [
   MatSnackBarModule,
   MatBadgeModule,
   MatExpansionModule,
+  MatSelectModule,
 ];
