@@ -3,14 +3,16 @@ import { Component } from '@angular/core';
 import { CoreModule } from '@core/core.module';
 import { AnimatedFeedback } from '@core/interfaces';
 import { Product } from '@core/models';
+import { IteratorPipe } from '@core/pipes/iterator.pipe';
 import { CartManagerService } from '@core/services/app/cart-manager.service';
 import { SnackbarService } from '@core/services/app/snack-bar.service';
 import { UtilsService } from '@core/services/app/utils.service';
 import { SharedModule } from '@shared/shared.module';
 import { Subject } from 'rxjs';
+import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 
 @Component({
-  imports: [CoreModule, SharedModule],
+  imports: [CoreModule, SharedModule, QuantitySelectorComponent],
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
@@ -31,11 +33,11 @@ export class ProductComponent {
     this.randomImageNumber = this.utilsService.getRandomNumber(6);
   }
 
-  addToCart(product: Product, quantity: string) {
+  addToCart(product: Product, quantity: number) {
     const isAddedSuccessfully = this.cartManagerService.addProduct({
       product: product,
-      quantity: +quantity,
-      totalPrice: product.unit_price * +quantity,
+      quantity: quantity,
+      totalPrice: product.unit_price * quantity,
     });
 
     if (!isAddedSuccessfully) {

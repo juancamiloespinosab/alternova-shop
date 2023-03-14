@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill">
+  <mat-select [(ngModel)]="value" hideSingleSelectionIndicator="true">
+    <mat-option
+      *ngFor="
+        let value of [] | iterator : (numberOptions === 0 ? 1 : numberOptions)
+      "
+      [value]="value"
+      >{{ value }} unit{{ value > 1 ? "s" : "" }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>

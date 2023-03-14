@@ -5,7 +5,7 @@ import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, NgOptimizedImage, MATERIAL_MODULES],
-  exports: [CommonModule, NgOptimizedImage, MATERIAL_MODULES],
+  imports: [CommonModule, NgOptimizedImage, ...MATERIAL_MODULES],
+  exports: [CommonModule, NgOptimizedImage, ...MATERIAL_MODULES],
 })
 export class SharedModule {}

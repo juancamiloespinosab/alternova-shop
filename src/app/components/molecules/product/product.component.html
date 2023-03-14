@@ -19,20 +19,11 @@
   </mat-card-content>
   <mat-card-actions>
     <div class="add-to-cart-container">
-      <mat-form-field appearance="fill">
-        <input
-          #input
-          class="add-to-cart__input"
-          matInput
-          type="number"
-          value="1"
-          min="1"
-        />
-      </mat-form-field>
+      <app-quantity-selector #quantity></app-quantity-selector>
       <button
         class="add-to-cart__button"
         [animatedFeedback]="animatedFeedbackSucces$"
-        (click)="addToCart(product, input.value)"
+        (click)="addToCart(product, quantity.value)"
         color="accent"
         mat-raised-button
       >
